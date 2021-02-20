@@ -5,4 +5,8 @@ import System.Environment
 import Data.Char (isDigit)
 
 defaultRegex :: String
-defaultRegex =
+defaultRegex = "a(b|c)d{2,3}e*"
+
+main :: IO ()
+main = do
+    hSetBuffering std
