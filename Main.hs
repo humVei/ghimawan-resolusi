@@ -9,4 +9,7 @@ defaultRegex = "a(b|c)d{2,3}e*"
 
 main :: IO ()
 main = do
-    hSetBuffering std
+    hSetBuffering stdout NoBuffering
+    args <- getArgs
+    case args of
+        [] -> d
