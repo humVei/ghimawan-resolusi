@@ -12,4 +12,6 @@ main = do
     hSetBuffering stdout NoBuffering
     args <- getArgs
     case args of
-        [] -> d
+        [] -> do
+            prog <- getProgName
+            if prog == "<int
