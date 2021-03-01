@@ -14,4 +14,5 @@ main = do
     case args of
         [] -> do
             prog <- getProgName
-            if prog == "<int
+            if prog == "<interactive>" then run defaultRegex else do
+            
