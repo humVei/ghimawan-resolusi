@@ -16,4 +16,4 @@ main = do
             prog <- getProgName
             if prog == "<interactive>" then run defaultRegex else do
                 fail $ "Usage: " ++ prog ++ " regex [regex...]"
-      
+        rx | all isPure rx -> mapM_ ((putStr "0 " >>) . pri
