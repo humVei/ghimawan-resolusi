@@ -15,4 +15,5 @@ main = do
         [] -> do
             prog <- getProgName
             if prog == "<interactive>" then run defaultRegex else do
-            
+                fail $ "Usage: " ++ prog ++ " regex [regex...]"
+      
