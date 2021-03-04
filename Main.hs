@@ -18,4 +18,6 @@ main = do
                 fail $ "Usage: " ++ prog ++ " regex [regex...]"
         rx | all isPure rx -> mapM_ ((putStr "0 " >>) . print) (genexPure rx)
            | otherwise     -> genexPrint rx
- 
+    where
+    isPure [] = True
+    isPure ('\\':'\\':cs) 
