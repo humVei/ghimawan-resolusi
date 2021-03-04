@@ -20,4 +20,6 @@ main = do
            | otherwise     -> genexPrint rx
     where
     isPure [] = True
-    isPure ('\\':'\\':cs) 
+    isPure ('\\':'\\':cs) = isPure cs
+    isPure ('\\':'b':_) = False
+    isPure 
