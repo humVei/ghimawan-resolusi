@@ -22,4 +22,6 @@ main = do
     isPure [] = True
     isPure ('\\':'\\':cs) = isPure cs
     isPure ('\\':'b':_) = False
-    isPure 
+    isPure ('\\':c:cs)
+        | isDigit c = False
+        | otherwise = is
