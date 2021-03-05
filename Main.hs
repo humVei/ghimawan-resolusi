@@ -24,4 +24,7 @@ main = do
     isPure ('\\':'b':_) = False
     isPure ('\\':c:cs)
         | isDigit c = False
-        | otherwise = is
+        | otherwise = isPure cs
+    isPure ('^':_) = False
+    isPure ('$':_) = False
+    i
