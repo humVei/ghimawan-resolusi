@@ -27,4 +27,7 @@ main = do
         | otherwise = isPure cs
     isPure ('^':_) = False
     isPure ('$':_) = False
-    i
+    isPure (_:cs) = isPure cs
+
+run :: String -> IO ()
+run regex = genexPrint [reg
