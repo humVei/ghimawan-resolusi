@@ -30,4 +30,4 @@ main = do
     isPure (_:cs) = isPure cs
 
 run :: String -> IO ()
-run regex = genexPrint [reg
+run regex = genexPrint [regex]
