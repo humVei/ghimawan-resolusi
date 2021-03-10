@@ -4,4 +4,4 @@ The "genex" program finds all permutations of strings that matches every
 regular expressions specified in the command line, with full support
 for back references (\1 .. \9) and word boundaries (\b).
 
-Th
+The output is unsorted, but the order is deterministic across multi
