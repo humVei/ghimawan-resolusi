@@ -6,4 +6,6 @@ for back references (\1 .. \9) and word boundaries (\b).
 
 The output is unsorted, but the order is deterministic across multiple runs:
 
-    $ genex '\d' '[123abc]' # Must mat
+    $ genex '\d' '[123abc]' # Must match both
+    1.00000000              "2"
+    
