@@ -8,4 +8,7 @@ The output is unsorted, but the order is deterministic across multiple runs:
 
     $ genex '\d' '[123abc]' # Must match both
     1.00000000              "2"
-    
+    1.00000000              "3"
+    1.00000000              "1"
+
+To
