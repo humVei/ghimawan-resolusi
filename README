@@ -11,4 +11,4 @@ The output is unsorted, but the order is deterministic across multiple runs:
     1.00000000              "3"
     1.00000000              "1"
 
-To
+To enforce a fixed ordering for alternations, pipe the output 
