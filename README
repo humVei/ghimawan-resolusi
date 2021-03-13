@@ -14,4 +14,5 @@ The output is unsorted, but the order is deterministic across multiple runs:
 To enforce a fixed ordering for alternations, pipe the output to "sort -n":
 
     $ genex '(__|<>){1,3}' | sort -n
-    2.
+    2.00000000              "<>"
+    2.00000001              
