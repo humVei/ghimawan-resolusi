@@ -17,4 +17,6 @@ To enforce a fixed ordering for alternations, pipe the output to "sort -n":
     2.00000000              "<>"
     2.00000001              "__"
     4.00000002              "<><>"
-    4.00000003       
+    4.00000003              "__<>"
+    4.00000006              "<>__"
+    4.000
