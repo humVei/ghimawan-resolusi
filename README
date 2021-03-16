@@ -27,3 +27,6 @@ To enforce a fixed ordering for alternations, pipe the output to "sort -n":
     6.00000026              "<><>__"
     6.00000027              "__<>__"
     6.00000030              "<>____"
+    6.00000031              "______"
+
+Output size and maximum string length are bo
