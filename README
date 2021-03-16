@@ -29,4 +29,7 @@ To enforce a fixed ordering for alternations, pipe the output to "sort -n":
     6.00000030              "<>____"
     6.00000031              "______"
 
-Output size and maximum string length are bo
+Output size and maximum string length are both capped at 65535 currently,
+but both can be raised if needed.
+
+Bec
