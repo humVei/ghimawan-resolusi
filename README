@@ -35,4 +35,8 @@ but both can be raised if needed.
 Because genex generates matches lazily, we can use "head -n" to display
 only part of its output:
 
-    genex '[ab
+    genex '[abc]+[123]+.+' | head -n 10
+
+Some caveats:
+
+- We translate * and + quan
