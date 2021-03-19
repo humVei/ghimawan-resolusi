@@ -32,4 +32,7 @@ To enforce a fixed ordering for alternations, pipe the output to "sort -n":
 Output size and maximum string length are both capped at 65535 currently,
 but both can be raised if needed.
 
-Because genex generates matches lazily, we can use "head 
+Because genex generates matches lazily, we can use "head -n" to display
+only part of its output:
+
+    genex '[ab
