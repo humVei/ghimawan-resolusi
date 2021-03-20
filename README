@@ -42,4 +42,5 @@ Some caveats:
 - We translate * and + quantifiers into {0,3} and {1,4}, to make output
   appear more unique.
 
-- The set of . \D \W \S characters are limited to print
+- The set of . \D \W \S characters are limited to printable characters,
+  again to make the output more prett
