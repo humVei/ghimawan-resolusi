@@ -39,4 +39,5 @@ only part of its output:
 
 Some caveats:
 
-- We translate * and + quan
+- We translate * and + quantifiers into {0,3} and {1,4}, to make output
+  appear more
