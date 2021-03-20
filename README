@@ -40,4 +40,6 @@ only part of its output:
 Some caveats:
 
 - We translate * and + quantifiers into {0,3} and {1,4}, to make output
-  appear more
+  appear more unique.
+
+- The set of . \D \W \S characters are limited to print
