@@ -46,4 +46,6 @@ Some caveats:
   again to make the output more pretty.
 
 - The ^ and $ anchors are taken to mean begin-of-line and end-of-line
-  (implicit /m), since we already implicitly anchor on b
+  (implicit /m), since we already implicitly anchor on both ends.
+
+- No support yet for \l \u \L \U \Q \E (case 
