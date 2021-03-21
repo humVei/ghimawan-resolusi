@@ -43,4 +43,6 @@ Some caveats:
   appear more unique.
 
 - The set of . \D \W \S characters are limited to printable characters,
-  again to make the output more prett
+  again to make the output more pretty.
+
+- The ^ and $ anchors are taken to mean begin-of-line and end-of-line
