@@ -48,4 +48,6 @@ Some caveats:
 - The ^ and $ anchors are taken to mean begin-of-line and end-of-line
   (implicit /m), since we already implicitly anchor on both ends.
 
-- No support yet for \l \u \L \U \Q \E (case 
+- No support yet for \l \u \L \U \Q \E (case and quotemeta modifiers)
+
+- No named Unicode properties or 
