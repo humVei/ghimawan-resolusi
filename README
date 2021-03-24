@@ -50,4 +50,6 @@ Some caveats:
 
 - No support yet for \l \u \L \U \Q \E (case and quotemeta modifiers)
 
-- No named Unicode properties or 
+- No named Unicode properties or POSIX [[:upper:]] classes yet.
+
+Required Hackage libraries: sbv reg
