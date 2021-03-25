@@ -56,4 +56,4 @@ Required Hackage libraries: sbv regex-tdfa stream-monad text
 
 Required binary in PATH:
 
-    
+    yices # Download it from http://yices.csl.sri.com/download-
