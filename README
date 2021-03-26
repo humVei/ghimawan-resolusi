@@ -58,4 +58,6 @@ Required binary in PATH:
 
     yices # Download it from http://yices.csl.sri.com/download-yices2.shtml
 
-You can directly run the Main.hs in the checko
+You can directly run the Main.hs in the checkout directory as well:
+
+    runghc Main.hs 'your regex
