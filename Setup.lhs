@@ -1,3 +1,6 @@
 #!/usr/bin/env runghc
 > import Distribution.Simple
-> import S
+> import System.Cmd (rawSystem)
+> 
+> main :: IO ()
+> main = defaultMainW
