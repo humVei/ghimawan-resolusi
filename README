@@ -60,4 +60,6 @@ Required binary in PATH:
 
 You can directly run the Main.hs in the checkout directory as well:
 
-    runghc Main.hs 'your regex
+    runghc Main.hs 'your regex here'
+
+Pre-built MacOSX binaries are in binaries/osx/; tr
