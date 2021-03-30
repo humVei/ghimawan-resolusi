@@ -3,4 +3,4 @@
 > import System.Cmd (rawSystem)
 > 
 > main :: IO ()
-> main = defaultMainW
+> main = defaultMainWithHooks simpleUserHooks
