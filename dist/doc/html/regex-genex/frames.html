@@ -13,4 +13,6 @@
   TODO: provide some means to disable it.
 */
 function load() {
-  var d = document
+  var d = document.getElementById("inner-fs");
+  d.rows = "50%,50%";
+  postReframe();
