@@ -37,3 +37,76 @@ function toggleClass(elem, valueOn, valueOff, bool) {
   }
   return bool;
 }
+
+
+function makeClassToggle(valueOn, valueOff)
+{
+  return function(elem, bool) {
+    return toggleClass(elem, valueOn, valueOff, bool);
+  }
+}
+
+toggleShow = makeClassToggle("show", "hide");
+toggleCollapser = makeClassToggle("collapser", "expander");
+
+function toggleSection(id)
+{
+  var b = toggleShow(document.getElementById("section." + id));
+  toggleCollapser(document.getElementById("control." + id), b);
+  rememberCollapsed(id, b);
+  return b;
+}
+
+var collapsed = {};
+function rememberCollapsed(id, b)
+{
+  if(b)
+    delete collapsed[id]
+  else
+    collapsed[id] = null;
+
+  var sections = [];
+  for(var i in collapsed)
+  {
+    if(collapsed.hasOwnProperty(i))
+      sections.push(i);
+  }
+  // cookie specific to this page; don't use setCookie which sets path=/
+  document.cookie = "collapsed=" + escape(sections.join('+'));
+}
+
+function restoreCollapsed()
+{
+  var cookie = getCookie("collapsed");
+  if(!cookie)
+    return;
+
+  var ids = cookie.split('+');
+  for(var i in ids)
+  {
+    if(document.getElementById("section." + ids[i]))
+      toggleSection(ids[i]);
+  }
+}
+
+function setCookie(name, value) {
+  document.cookie = name + "=" + escape(value) + ";path=/;";
+}
+
+function clearCookie(name) {
+  document.cookie = name + "=;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT;";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) {
+      return unescape(c.substring(nameEQ.length,c.length));
+    }
+  }
+  return null;
+}
+
