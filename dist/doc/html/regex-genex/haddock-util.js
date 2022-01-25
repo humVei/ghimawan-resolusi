@@ -110,3 +110,59 @@ function getCookie(name) {
   return null;
 }
 
+
+
+var max_results = 75; // 50 is not enough to search for map in the base libraries
+var shown_range = null;
+var last_search = null;
+
+function quick_search()
+{
+    perform_search(false);
+}
+
+function full_search()
+{
+    perform_search(true);
+}
+
+
+function perform_search(full)
+{
+    var text = document.getElementById("searchbox").value.toLowerCase();
+    if (text == last_search && !full) return;
+    last_search = text;
+    
+    var table = document.getElementById("indexlist");
+    var status = document.getElementById("searchmsg");
+    var children = table.firstChild.childNodes;
+    
+    // first figure out the first node with the prefix
+    var first = bisect(-1);
+    var last = (first == -1 ? -1 : bisect(1));
+
+    if (first == -1)
+    {
+        table.className = "";
+        status.innerHTML = "No results found, displaying all";
+    }
+    else if (first == 0 && last == children.length - 1)
+    {
+        table.className = "";
+        status.innerHTML = "";
+    }
+    else if (last - first >= max_results && !full)
+    {
+        table.className = "";
+        status.innerHTML = "More than " + max_results + ", press Search to display";
+    }
+    else
+    {
+        // decide what you need to clear/show
+        if (shown_range)
+            setclass(shown_range[0], shown_range[1], "indexrow");
+        setclass(first, last, "indexshow");
+        shown_range = [first, last];
+        table.className = "indexsearch";
+        status.innerHTML = "";
+    }
