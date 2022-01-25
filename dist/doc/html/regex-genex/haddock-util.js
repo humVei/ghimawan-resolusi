@@ -233,3 +233,55 @@ function setSynopsis(filename) {
     if (parent.window.synopsis) {
         if (parent.window.synopsis.location.replace) {
             // In Firefox this avoids adding the change to the history.
+            parent.window.synopsis.location.replace(filename);
+        } else {
+            parent.window.synopsis.location = filename;
+        }
+    }
+}
+
+function addMenuItem(html) {
+  var menu = document.getElementById("page-menu");
+  if (menu) {
+    var btn = menu.firstChild.cloneNode(false);
+    btn.innerHTML = html;
+    menu.appendChild(btn);
+  }
+}
+
+function adjustForFrames() {
+  var bodyCls;
+  
+  if (parent.location.href == window.location.href) {
+    // not in frames, so add Frames button
+    addMenuItem("<a href='#' onclick='reframe();return true;'>Frames</a>");
+    bodyCls = "no-frame";
+  }
+  else {
+    bodyCls = "in-frame";
+  }
+  addClass(document.body, bodyCls);
+}
+
+function reframe() {
+  setCookie("haddock-reframe", document.URL);
+  window.location = "frames.html";
+}
+
+function postReframe() {
+  var s = getCookie("haddock-reframe");
+  if (s) {
+    parent.window.main.location = s;
+    clearCookie("haddock-reframe");
+  }
+}
+
+function styles() {
+  var i, a, es = document.getElementsByTagName("link"), rs = [];
+  for (i = 0; a = es[i]; i++) {
+    if(a.rel.indexOf("style") != -1 && a.title) {
+      rs.push(a);
+    }
+  }
+  return rs;
+}
