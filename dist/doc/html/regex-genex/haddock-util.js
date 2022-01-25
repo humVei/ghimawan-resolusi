@@ -166,3 +166,70 @@ function perform_search(full)
         table.className = "indexsearch";
         status.innerHTML = "";
     }
+
+    
+    function setclass(first, last, status)
+    {
+        for (var i = first; i <= last; i++)
+        {
+            children[i].className = status;
+        }
+    }
+    
+    
+    // do a binary search, treating 0 as ...
+    // return either -1 (no 0's found) or location of most far match
+    function bisect(dir)
+    {
+        var first = 0, finish = children.length - 1;
+        var mid, success = false;
+
+        while (finish - first > 3)
+        {
+            mid = Math.floor((finish + first) / 2);
+
+            var i = checkitem(mid);
+            if (i == 0) i = dir;
+            if (i == -1)
+                finish = mid;
+            else
+                first = mid;
+        }
+        var a = (dir == 1 ? first : finish);
+        var b = (dir == 1 ? finish : first);
+        for (var i = b; i != a - dir; i -= dir)
+        {
+            if (checkitem(i) == 0) return i;
+        }
+        return -1;
+    }    
+    
+    
+    // from an index, decide what the result is
+    // 0 = match, -1 is lower, 1 is higher
+    function checkitem(i)
+    {
+        var s = getitem(i).toLowerCase().substr(0, text.length);
+        if (s == text) return 0;
+        else return (s > text ? -1 : 1);
+    }
+    
+    
+    // from an index, get its string
+    // this abstracts over alternates
+    function getitem(i)
+    {
+        for ( ; i >= 0; i--)
+        {
+            var s = children[i].firstChild.firstChild.data;
+            if (s.indexOf(' ') == -1)
+                return s;
+        }
+        return ""; // should never be reached
+    }
+}
+
+function setSynopsis(filename) {
+    if (parent.window.synopsis) {
+        if (parent.window.synopsis.location.replace) {
+            // In Firefox this avoids adding the change to the history.
