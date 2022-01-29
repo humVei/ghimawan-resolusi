@@ -285,3 +285,60 @@ function styles() {
   }
   return rs;
 }
+
+function addStyleMenu() {
+  var as = styles();
+  var i, a, btns = "";
+  for(i=0; a = as[i]; i++) {
+    btns += "<li><a href='#' onclick=\"setActiveStyleSheet('"
+      + a.title + "'); return false;\">"
+      + a.title + "</a></li>"
+  }
+  if (as.length > 1) {
+    var h = "<div id='style-menu-holder'>"
+      + "<a href='#' onclick='styleMenu(); return false;'>Style &#9662;</a>"
+      + "<ul id='style-menu' class='hide'>" + btns + "</ul>"
+      + "</div>";
+    addMenuItem(h);
+  }
+}
+
+function setActiveStyleSheet(title) {
+  var as = styles();
+  var i, a, found;
+  for(i=0; a = as[i]; i++) {
+    a.disabled = true;
+          // need to do this always, some browsers are edge triggered
+    if(a.title == title) {
+      found = a;
+    }
+  }
+  if (found) {
+    found.disabled = false;
+    setCookie("haddock-style", title);
+  }
+  else {
+    as[0].disabled = false;
+    clearCookie("haddock-style");
+  }
+  styleMenu(false);
+}
+
+function resetStyle() {
+  var s = getCookie("haddock-style");
+  if (s) setActiveStyleSheet(s);
+}
+
+
+function styleMenu(show) {
+  var m = document.getElementById('style-menu');
+  if (m) toggleShow(m, show);
+}
+
+
+function pageLoad() {
+  addStyleMenu();
+  adjustForFrames();
+  resetStyle();
+  restoreCollapsed();
+}
