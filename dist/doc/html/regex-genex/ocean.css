@@ -14,4 +14,12 @@ body {
   color: black;
   text-align: left;
   min-height: 100%;
-  positio
+  position: relative;
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+ul, ol {
+  margin: 0.8em 0
