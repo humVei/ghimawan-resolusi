@@ -30,4 +30,11 @@ dl {
 }
 
 dt {
-  font-weigh
+  font-weight: bold;
+}
+dd {
+  margin-left: 2em;
+}
+
+a { text-decoration: none; }
+a[href]
