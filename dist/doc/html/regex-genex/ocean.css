@@ -38,4 +38,7 @@ dd {
 
 a { text-decoration: none; }
 a[href]:link { color: rgb(196,69,29); }
-a[href]:visited { color: rgb(171,10
+a[href]:visited { color: rgb(171,105,84); }
+a[href]:hover { text-decoration:underline; }
+
+/* @end 
