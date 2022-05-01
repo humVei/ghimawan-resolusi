@@ -45,4 +45,6 @@ a[href]:hover { text-decoration:underline; }
 
 /* @group Fonts & Sizes */
 
-/* Basic technique & IE workaroun
+/* Basic technique & IE workarounds from YUI 3
+   For reasons, see:
+      http://y
