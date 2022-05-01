@@ -41,4 +41,8 @@ a[href]:link { color: rgb(196,69,29); }
 a[href]:visited { color: rgb(171,105,84); }
 a[href]:hover { text-decoration:underline; }
 
-/* @end 
+/* @end */
+
+/* @group Fonts & Sizes */
+
+/* Basic technique & IE workaroun
