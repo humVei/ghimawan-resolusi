@@ -51,4 +51,6 @@ a[href]:hover { text-decoration:underline; }
  */
  
 body {
-	f
+	font:13px/1.4 sans-serif;
+	*font-size:small; /* for IE */
+	*font:x
