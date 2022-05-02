@@ -53,4 +53,7 @@ a[href]:hover { text-decoration:underline; }
 body {
 	font:13px/1.4 sans-serif;
 	*font-size:small; /* for IE */
-	*font:x
+	*font:x-small; /* for IE in quirks mode */
+}
+
+h1 { font-size: 146.5%; /* 19
