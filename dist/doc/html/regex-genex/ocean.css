@@ -56,4 +56,6 @@ body {
 	*font:x-small; /* for IE in quirks mode */
 }
 
-h1 { font-size: 146.5%; /* 19
+h1 { font-size: 146.5%; /* 19pt */ } 
+h2 { font-size: 131%;   /* 17pt */ }
+h3 { font-si
