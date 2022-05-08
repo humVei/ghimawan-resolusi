@@ -62,4 +62,10 @@ h3 { font-size: 116%;   /* 15pt */ }
 h4 { font-size: 100%;   /* 13pt */ }
 h5 { font-size: 100%;   /* 13pt */ }
 
-select, input, button,
+select, input, button, textarea {
+	font:99% sans-serif;
+}
+
+table {
+	font-size:inherit;
+	
