@@ -68,4 +68,8 @@ select, input, button, textarea {
 
 table {
 	font-size:inherit;
-	
+	font:100%;
+}
+
+pre, code, kbd, samp, tt, .src {
+	font-family:monospa
