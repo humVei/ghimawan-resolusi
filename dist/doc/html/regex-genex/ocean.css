@@ -60,4 +60,6 @@ h1 { font-size: 146.5%; /* 19pt */ }
 h2 { font-size: 131%;   /* 17pt */ }
 h3 { font-size: 116%;   /* 15pt */ }
 h4 { font-size: 100%;   /* 13pt */ }
-h5 { 
+h5 { font-size: 100%;   /* 13pt */ }
+
+select, input, button,
