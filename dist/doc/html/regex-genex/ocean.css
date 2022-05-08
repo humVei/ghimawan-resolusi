@@ -72,4 +72,10 @@ table {
 }
 
 pre, code, kbd, samp, tt, .src {
-	font-family:monospa
+	font-family:monospace;
+	*font-size:108%;
+	line-height: 124%;
+}
+
+.links, .link {
+  fon
