@@ -78,4 +78,8 @@ pre, code, kbd, samp, tt, .src {
 }
 
 .links, .link {
-  fon
+  font-size: 85%; /* 11pt */
+}
+
+#module-header .caption {
+  font-siz
