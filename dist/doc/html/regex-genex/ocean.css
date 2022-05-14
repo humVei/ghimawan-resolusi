@@ -86,4 +86,8 @@ pre, code, kbd, samp, tt, .src {
 }
 
 .info  {
-  font-size: 85%; /* 11pt *
+  font-size: 85%; /* 11pt */
+}
+
+#table-of-contents, #synopsis  {
+  /* font-size: 85%; /* 11pt *
