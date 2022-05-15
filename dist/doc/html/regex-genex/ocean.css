@@ -90,4 +90,12 @@ pre, code, kbd, samp, tt, .src {
 }
 
 #table-of-contents, #synopsis  {
-  /* font-size: 85%; /* 11pt *
+  /* font-size: 85%; /* 11pt */
+}
+
+
+/* @end */
+
+/* @group Common */
+
+.caption, h1, h2,
