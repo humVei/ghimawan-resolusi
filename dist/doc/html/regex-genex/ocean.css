@@ -101,4 +101,7 @@ pre, code, kbd, samp, tt, .src {
 .caption, h1, h2, h3, h4, h5, h6 { 
   font-weight: bold;
   color: rgb(78,98,114);
-  ma
+  margin: 0.8em 0 0.4em;
+}
+
+* + h1, * + h2, * + h3, * + h4, * + h5, * + h
