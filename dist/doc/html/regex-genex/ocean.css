@@ -98,4 +98,7 @@ pre, code, kbd, samp, tt, .src {
 
 /* @group Common */
 
-.caption, h1, h2,
+.caption, h1, h2, h3, h4, h5, h6 { 
+  font-weight: bold;
+  color: rgb(78,98,114);
+  ma
