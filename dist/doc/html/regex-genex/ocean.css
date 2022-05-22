@@ -104,4 +104,9 @@ pre, code, kbd, samp, tt, .src {
   margin: 0.8em 0 0.4em;
 }
 
-* + h1, * + h2, * + h3, * + h4, * + h5, * + h
+* + h1, * + h2, * + h3, * + h4, * + h5, * + h6 {
+  margin-top: 2em;
+}
+
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+  mar
