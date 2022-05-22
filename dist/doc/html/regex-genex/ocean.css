@@ -115,4 +115,9 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
 ul.links {
   list-style: none;
   text-align: left;
-  float
+  float: right;
+  display: inline-table;
+  margin: 0 0 0 1em;
+}
+
+u
