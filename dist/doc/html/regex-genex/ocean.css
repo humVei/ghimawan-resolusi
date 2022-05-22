@@ -109,4 +109,10 @@ pre, code, kbd, samp, tt, .src {
 }
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
-  mar
+  margin-top: inherit;
+}
+
+ul.links {
+  list-style: none;
+  text-align: left;
+  float
