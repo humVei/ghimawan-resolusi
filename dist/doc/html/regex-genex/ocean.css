@@ -120,4 +120,7 @@ ul.links {
   margin: 0 0 0 1em;
 }
 
-u
+ul.links li {
+  display: inline;
+  border-left: 1px solid #d5d5d5; 
+  whi
