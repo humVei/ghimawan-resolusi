@@ -123,4 +123,9 @@ ul.links {
 ul.links li {
   display: inline;
   border-left: 1px solid #d5d5d5; 
-  whi
+  white-space: nowrap;
+  padding: 0;
+}
+
+ul.links li a {
+  padding: 0.2
