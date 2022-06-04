@@ -132,4 +132,8 @@ ul.links li a {
 }
 
 .hide { display: none; }
-.show { display: inhe
+.show { display: inherit; }
+.clear { clear: both; }
+
+.collapser {
+  background-image: url(min
