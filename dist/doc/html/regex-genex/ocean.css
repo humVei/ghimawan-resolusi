@@ -140,4 +140,7 @@ ul.links li a {
   background-repeat: no-repeat;
 }
 .expander {
-  ba
+  background-image: url(plus.gif);
+  background-repeat: no-repeat;
+}
+p.cap
