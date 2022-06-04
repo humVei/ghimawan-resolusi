@@ -136,4 +136,8 @@ ul.links li a {
 .clear { clear: both; }
 
 .collapser {
-  background-image: url(min
+  background-image: url(minus.gif);
+  background-repeat: no-repeat;
+}
+.expander {
+  ba
