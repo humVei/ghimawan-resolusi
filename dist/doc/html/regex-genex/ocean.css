@@ -143,4 +143,6 @@ ul.links li a {
   background-image: url(plus.gif);
   background-repeat: no-repeat;
 }
-p.cap
+p.caption.collapser,
+p.caption.expander {
+  background-position:
