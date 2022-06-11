@@ -145,4 +145,8 @@ ul.links li a {
 }
 p.caption.collapser,
 p.caption.expander {
-  background-position:
+  background-position: 0 0.4em;
+}
+.collapser, .expander {
+  padding-left: 14px;
+ 
