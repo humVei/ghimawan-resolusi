@@ -154,4 +154,6 @@ p.caption.expander {
 }
 
 pre {
-  padd
+  padding: 0.25em;
+  margin: 0.8em 0;
+  background: rgb(229,237,
