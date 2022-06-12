@@ -161,3 +161,8 @@ pre {
   border-bottom: 0.25em solid white;
   /* white border adds some space below the box to compensate
      for visual extra space that paragraphs have between baseline
+     and the bounding box */
+}
+
+.src {
+  background: #f0
