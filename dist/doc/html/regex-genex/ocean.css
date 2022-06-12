@@ -159,4 +159,5 @@ pre {
   background: rgb(229,237,244);
   overflow: auto;
   border-bottom: 0.25em solid white;
-  /* white border adds some space below the box to compensat
+  /* white border adds some space below the box to compensate
+     for visual extra space that paragraphs have between baseline
