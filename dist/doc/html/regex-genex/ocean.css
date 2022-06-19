@@ -169,4 +169,10 @@ pre {
   padding: 0.2em 0.5em;
 }
 
-.keyword { font-weight: no
+.keyword { font-weight: normal; }
+.def { font-weight: bold; }
+
+
+/* @end */
+
+/* @group
