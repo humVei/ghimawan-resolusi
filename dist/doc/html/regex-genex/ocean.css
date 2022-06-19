@@ -165,4 +165,8 @@ pre {
 }
 
 .src {
-  background: #f0
+  background: #f0f0f0;
+  padding: 0.2em 0.5em;
+}
+
+.keyword { font-weight: no
