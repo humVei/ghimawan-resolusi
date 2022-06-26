@@ -195,4 +195,9 @@ pre {
   background: url(hslogo-16.png) no-repeat 0em;
   color: white;
   margin: 0 2em;
-  font-
+  font-weight: normal;
+  font-style: normal;
+  padding-left: 2em;
+}
+
+#package-header a:link, #pac
