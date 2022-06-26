@@ -187,4 +187,8 @@ pre {
   border-top: 5px solid rgb(78,98,114);
   color: #ddd;
   padding: 0.2em;
-  positi
+  position: relative;
+  text-align: left;
+}
+
+#package-header .caption {
