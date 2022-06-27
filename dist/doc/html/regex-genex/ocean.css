@@ -200,4 +200,5 @@ pre {
   padding-left: 2em;
 }
 
-#package-header a:link, #pac
+#package-header a:link, #package-header a:visited { color: white; }
+#package-header a:
