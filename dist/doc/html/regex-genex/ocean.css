@@ -206,4 +206,10 @@ pre {
 #module-header .caption {
   color: rgb(78,98,114);
   font-weight: bold;
-  border-bottom: 1px solid #dd
+  border-bottom: 1px solid #ddd;
+}
+
+table.info {
+  float: right;
+  padding: 0.5em 1em;
+  border: 1px
