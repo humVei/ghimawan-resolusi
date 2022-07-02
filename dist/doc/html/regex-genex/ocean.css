@@ -204,4 +204,6 @@ pre {
 #package-header a:hover { background: rgb(78,98,114); }
 
 #module-header .caption {
-  color
+  color: rgb(78,98,114);
+  font-weight: bold;
+  border-bottom: 1px solid #dd
