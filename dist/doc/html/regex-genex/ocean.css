@@ -201,4 +201,7 @@ pre {
 }
 
 #package-header a:link, #package-header a:visited { color: white; }
-#package-header a:
+#package-header a:hover { background: rgb(78,98,114); }
+
+#module-header .caption {
+  color
