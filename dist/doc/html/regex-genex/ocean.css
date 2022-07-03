@@ -212,4 +212,6 @@ pre {
 table.info {
   float: right;
   padding: 0.5em 1em;
-  border: 1px
+  border: 1px solid #ddd;
+  color: rgb(78,98,114);
+  background-color
