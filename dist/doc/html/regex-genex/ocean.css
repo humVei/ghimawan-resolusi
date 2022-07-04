@@ -214,4 +214,7 @@ table.info {
   padding: 0.5em 1em;
   border: 1px solid #ddd;
   color: rgb(78,98,114);
-  background-color
+  background-color: #fff;
+  max-width: 40%;
+  border-spacing: 0;
+  position: 
