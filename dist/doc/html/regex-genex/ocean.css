@@ -217,4 +217,10 @@ table.info {
   background-color: #fff;
   max-width: 40%;
   border-spacing: 0;
-  position: 
+  position: relative;
+  top: -0.5em;
+  margin: 0 0 0 2em;
+}
+
+.info th {
+	
