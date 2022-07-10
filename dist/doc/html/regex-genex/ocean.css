@@ -223,4 +223,8 @@ table.info {
 }
 
 .info th {
-	
+	padding: 0 1em 0 0;
+}
+
+div#style-menu-holder {
+  position: relative;
