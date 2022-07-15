@@ -228,3 +228,9 @@ table.info {
 
 div#style-menu-holder {
   position: relative;
+  z-index: 2;
+  display: inline;
+}
+
+#style-menu {
+  position: absolute;
