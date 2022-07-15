@@ -234,3 +234,7 @@ div#style-menu-holder {
 
 #style-menu {
   position: absolute;
+  z-index: 1;
+  overflow: visible;
+  background: #374c5e;
+  m
