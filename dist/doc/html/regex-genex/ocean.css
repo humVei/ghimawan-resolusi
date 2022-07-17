@@ -246,4 +246,8 @@ div#style-menu-holder {
 
 #style-menu li {
 	display: list-item;
-	border-style: n
+	border-style: none;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	list-
