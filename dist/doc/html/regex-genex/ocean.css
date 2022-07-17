@@ -237,4 +237,8 @@ div#style-menu-holder {
   z-index: 1;
   overflow: visible;
   background: #374c5e;
-  m
+  margin: 0;
+  text-align: center;
+  right: 0;
+  padding: 0;
+  t
