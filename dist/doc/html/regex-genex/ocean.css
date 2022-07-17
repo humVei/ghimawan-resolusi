@@ -241,4 +241,9 @@ div#style-menu-holder {
   text-align: center;
   right: 0;
   padding: 0;
-  t
+  top: 1.25em;
+}
+
+#style-menu li {
+	display: list-item;
+	border-style: n
