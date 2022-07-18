@@ -250,4 +250,8 @@ div#style-menu-holder {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	list-
+	list-style-type: none;
+}
+
+#style-menu li + li {
+	border-top: 1p
