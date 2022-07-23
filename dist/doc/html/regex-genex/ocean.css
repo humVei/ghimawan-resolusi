@@ -254,4 +254,9 @@ div#style-menu-holder {
 }
 
 #style-menu li + li {
-	border-top: 1p
+	border-top: 1px solid #919191;
+}
+
+#style-menu a {
+  width: 6em;
+  
