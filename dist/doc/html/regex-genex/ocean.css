@@ -259,4 +259,9 @@ div#style-menu-holder {
 
 #style-menu a {
   width: 6em;
-  
+  padding: 3px;
+  display: block;
+}
+
+#footer {
+  background: #d
