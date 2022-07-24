@@ -264,4 +264,7 @@ div#style-menu-holder {
 }
 
 #footer {
-  background: #d
+  background: #ddd;
+  border-top: 1px solid #aaa;
+  padding: 0.5em 0;
+  color
