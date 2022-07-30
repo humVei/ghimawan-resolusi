@@ -280,4 +280,7 @@ div#style-menu-holder {
 /* @group Front Matter */
 
 #table-of-contents {
-  float: right
+  float: right;
+  clear: right;
+  background: #faf9dc;
+  border: 1px so
