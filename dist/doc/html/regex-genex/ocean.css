@@ -286,4 +286,8 @@ div#style-menu-holder {
   border: 1px solid #d8d7ad;
   padding: 0.5em 1em;
   max-width: 20em;
-  margin:
+  margin: 0.5em 0 1em 1em;
+}
+
+#table-of-contents .caption {
+  text-ali
