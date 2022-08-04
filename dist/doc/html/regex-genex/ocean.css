@@ -295,4 +295,9 @@ div#style-menu-holder {
 }
 
 #table-of-contents ul {
-  list-style: non
+  list-style: none;
+  margin: 0;
+}
+
+#table-of-contents ul ul {
+  margin-left: 2em;
