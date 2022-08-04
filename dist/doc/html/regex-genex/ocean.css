@@ -290,4 +290,9 @@ div#style-menu-holder {
 }
 
 #table-of-contents .caption {
-  text-ali
+  text-align: center;
+  margin: 0;
+}
+
+#table-of-contents ul {
+  list-style: non
