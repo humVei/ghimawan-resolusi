@@ -301,3 +301,11 @@ div#style-menu-holder {
 
 #table-of-contents ul ul {
   margin-left: 2em;
+}
+
+#description .caption {
+  display: none;
+}
+
+#synopsis {
+  display
