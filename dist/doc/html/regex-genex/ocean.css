@@ -308,4 +308,9 @@ div#style-menu-holder {
 }
 
 #synopsis {
-  display
+  display: none;
+}
+
+.no-frame #synopsis {
+  display: block;
+  position: f
