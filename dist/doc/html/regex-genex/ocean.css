@@ -313,4 +313,8 @@ div#style-menu-holder {
 
 .no-frame #synopsis {
   display: block;
-  position: f
+  position: fixed;
+  right: 0;
+  height: 80%;
+  top: 10%;
+  padding: 0;
