@@ -323,4 +323,8 @@ div#style-menu-holder {
 #synopsis .caption {
   float: left;
   width: 29px;
-  c
+  color: rgba(255,255,255,0);
+  height: 110px;
+  margin: 0;
+  font-size: 1px;
+  
