@@ -327,4 +327,7 @@ div#style-menu-holder {
   height: 110px;
   margin: 0;
   font-size: 1px;
-  
+  padding: 0;
+}
+
+#synopsis p.caption.collapser
