@@ -331,4 +331,8 @@ div#style-menu-holder {
 }
 
 #synopsis p.caption.collapser {
-  background: url(synopsis.png) no-repeat -64px -8px
+  background: url(synopsis.png) no-repeat -64px -8px;
+}
+
+#synopsis p.caption.expander {
+  background: url(synopsis.png) no-
