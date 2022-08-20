@@ -340,4 +340,10 @@ div#style-menu-holder {
 
 #synopsis ul {
   height: 100%;
-  overflow: aut
+  overflow: auto;
+  padding: 0.5em;
+  margin: 0;
+}
+
+#synopsis ul ul {
+  overfl
