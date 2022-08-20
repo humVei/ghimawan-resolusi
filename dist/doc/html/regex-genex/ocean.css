@@ -335,4 +335,9 @@ div#style-menu-holder {
 }
 
 #synopsis p.caption.expander {
-  background: url(synopsis.png) no-
+  background: url(synopsis.png) no-repeat 0px -8px;
+}
+
+#synopsis ul {
+  height: 100%;
+  overflow: aut
