@@ -346,4 +346,9 @@ div#style-menu-holder {
 }
 
 #synopsis ul ul {
-  overfl
+  overflow: hidden;
+}
+
+#synopsis ul,
+#synopsis ul li.src {
+  background-c
