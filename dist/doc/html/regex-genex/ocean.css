@@ -361,4 +361,6 @@ div#style-menu-holder {
 
 /* @group Main Content */
 
-#interfa
+#interface div.top { margin: 2em 0; }
+#interface h1 + div.top,
+#int
