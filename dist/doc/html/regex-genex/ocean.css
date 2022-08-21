@@ -351,4 +351,7 @@ div#style-menu-holder {
 
 #synopsis ul,
 #synopsis ul li.src {
-  background-c
+  background-color: #faf9dc;
+  white-space: nowrap;
+  list-style: none;
+  margin
