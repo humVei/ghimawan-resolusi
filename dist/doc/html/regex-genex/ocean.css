@@ -366,3 +366,7 @@ div#style-menu-holder {
 #interface h2 + div.top,
 #interface h3 + div.top,
 #interface h4 + div.top,
+#interface h5 + div.top {
+ 	margin-top: 1em;
+}
+#int
