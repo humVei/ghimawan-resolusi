@@ -380,4 +380,8 @@ div#style-menu-holder {
 
 #interface table { border-spacing: 2px; }
 #interface td {
-  vertical-align: t
+  vertical-align: top;
+  padding-left: 0.5em;
+}
+#interface td.src {
+  white-space: no
