@@ -378,4 +378,6 @@ div#style-menu-holder {
   margin: 0 -0.5em 0 0.5em;
 }
 
-#interface table { border-spa
+#interface table { border-spacing: 2px; }
+#interface td {
+  vertical-align: t
