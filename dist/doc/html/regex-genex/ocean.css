@@ -369,4 +369,7 @@ div#style-menu-holder {
 #interface h5 + div.top {
  	margin-top: 1em;
 }
-#int
+#interface p.src .link {
+  float: right;
+  color: #919191;
+  border-left: 1px solid #9
