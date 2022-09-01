@@ -384,4 +384,9 @@ div#style-menu-holder {
   padding-left: 0.5em;
 }
 #interface td.src {
-  white-space: no
+  white-space: nowrap;
+}
+#interface td.doc p {
+  margin: 0;
+}
+#interface td.doc 
