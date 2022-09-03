@@ -389,4 +389,12 @@ div#style-menu-holder {
 #interface td.doc p {
   margin: 0;
 }
-#interface td.doc 
+#interface td.doc p + p {
+  margin-top: 0.8em;
+}
+
+.subs dl {
+  margin: 0;
+}
+
+.subs dt {
