@@ -398,3 +398,7 @@ div#style-menu-holder {
 }
 
 .subs dt {
+  float: left;
+  clear: left;
+  display: block;
+  margin: 1px
