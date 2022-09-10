@@ -410,3 +410,13 @@ div#style-menu-holder {
   display: block;
   padding-left: 0.5em;
   margin-bottom: 0.5em;
+}
+
+.subs dd.empty {
+  display: none;
+}
+
+.subs dd p {
+  margin: 0;
+}
+
