@@ -407,4 +407,6 @@ div#style-menu-holder {
 .subs dd {
   float: right;
   width: 90%;
-  display:
+  display: block;
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
