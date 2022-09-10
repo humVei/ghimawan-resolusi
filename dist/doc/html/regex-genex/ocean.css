@@ -420,3 +420,9 @@ div#style-menu-holder {
   margin: 0;
 }
 
+.top p.src {
+  border-top: 1px solid #ccc;
+}
+
+.subs, .doc {
+  /* use this
