@@ -432,4 +432,8 @@ div#style-menu-holder {
 .arguments {
   margin-top: -0.4em;
 }
-.arguments .c
+.arguments .caption {
+  display: none;
+}
+
+.fields { padd
