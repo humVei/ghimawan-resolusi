@@ -440,4 +440,7 @@ div#style-menu-holder {
 
 .fields .caption { display: none; }
 
-.fields p { mar
+.fields p { margin: 0 0; }
+
+/* this seems bulky to me
+.methods, .constru
