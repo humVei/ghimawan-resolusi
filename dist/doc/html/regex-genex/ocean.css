@@ -443,4 +443,6 @@ div#style-menu-holder {
 .fields p { margin: 0 0; }
 
 /* this seems bulky to me
-.methods, .constru
+.methods, .constructors {
+  background: #f8f8f8;
+  border: 1px solid #e
