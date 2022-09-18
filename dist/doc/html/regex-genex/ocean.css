@@ -454,4 +454,9 @@ div#style-menu-holder {
 /* @group Auxillary Pages */
 
 #mini {
-  mar
+  margin: 0 auto;
+  padding: 0 1em 1em;
+}
+
+#mini > * {
+  font-size: 93%; /* 12p
