@@ -436,4 +436,8 @@ div#style-menu-holder {
   display: none;
 }
 
-.fields { padd
+.fields { padding-left: 1em; }
+
+.fields .caption { display: none; }
+
+.fields p { mar
