@@ -459,4 +459,8 @@ div#style-menu-holder {
 }
 
 #mini > * {
-  font-size: 93%; /* 12p
+  font-size: 93%; /* 12pt */  
+}
+
+#mini #module-list .caption,
+#mini #module-header .caption
