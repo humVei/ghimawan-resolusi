@@ -470,4 +470,6 @@ div#style-menu-holder {
 #mini #interface h1,
 #mini #interface h2,
 #mini #interface h3,
-#m
+#mini #interface h4 {
+  font-size: 109%; /* 13pt */
+  margin:
