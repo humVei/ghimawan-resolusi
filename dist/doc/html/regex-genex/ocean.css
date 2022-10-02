@@ -477,4 +477,9 @@ div#style-menu-holder {
 
 #mini #interface .top,
 #mini #interface .src {
-  ma
+  margin: 0;
+}
+
+#mini #module-list ul {
+  list-style: none;
+  
