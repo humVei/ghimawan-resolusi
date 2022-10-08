@@ -499,3 +499,7 @@ div#style-menu-holder {
 
 #alphabet a {
 	font-weight: bold;
+}
+
+#index .caption,
+#module-list .caption { font-size: 131%; /* 1
