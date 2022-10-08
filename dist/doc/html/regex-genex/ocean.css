@@ -502,4 +502,10 @@ div#style-menu-holder {
 }
 
 #index .caption,
-#module-list .caption { font-size: 131%; /* 1
+#module-list .caption { font-size: 131%; /* 17pt */ }
+
+#index table {
+  margin-left: 2em;
+}
+
+#index .src 
