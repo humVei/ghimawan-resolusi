@@ -512,4 +512,9 @@ div#style-menu-holder {
   font-weight: bold;
 }
 #index .alt {
-  font-size: 77%; /* 10pt
+  font-size: 77%; /* 10pt */
+  font-style: italic;
+  padding-left: 2em;
+}
+
+#index td + t
