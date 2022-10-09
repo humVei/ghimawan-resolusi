@@ -508,4 +508,8 @@ div#style-menu-holder {
   margin-left: 2em;
 }
 
-#index .src 
+#index .src {
+  font-weight: bold;
+}
+#index .alt {
+  font-size: 77%; /* 10pt
