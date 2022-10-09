@@ -517,4 +517,9 @@ div#style-menu-holder {
   padding-left: 2em;
 }
 
-#index td + t
+#index td + td {
+  padding-left: 1em;
+}
+
+#module-list ul {
+  list-style: none;
