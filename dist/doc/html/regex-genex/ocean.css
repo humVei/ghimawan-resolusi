@@ -529,3 +529,7 @@ div#style-menu-holder {
 #module-list li {
   clear: right;
 }
+
+#module-list span.collapser,
+#module-list span.expander {
+  background
