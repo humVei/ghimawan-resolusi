@@ -532,4 +532,9 @@ div#style-menu-holder {
 
 #module-list span.collapser,
 #module-list span.expander {
-  background
+  background-position: 0 0.3em;
+}
+
+#module-list .package {
+  float: right;
+}
