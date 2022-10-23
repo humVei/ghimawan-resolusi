@@ -1,2 +1,5 @@
 Name            : regex-genex
 Version         : 0.7.0
+license         : OtherLicense
+license-file    : LICENSE
+cabal-v
