@@ -2,4 +2,5 @@ Name            : regex-genex
 Version         : 0.7.0
 license         : OtherLicense
 license-file    : LICENSE
-cabal-v
+cabal-version   : >= 1.6
+copyright       : 2011-2015 Audrey T
