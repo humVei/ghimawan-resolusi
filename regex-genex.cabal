@@ -4,4 +4,6 @@ license         : OtherLicense
 license-file    : LICENSE
 cabal-version   : >= 1.6
 copyright       : 2011-2015 Audrey Tang
-maintainer      : Audrey Tang <audreyt@audre
+maintainer      : Audrey Tang <audreyt@audreyt.org>
+category        : Text, Regex
+stability       : experiment
