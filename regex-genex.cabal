@@ -8,4 +8,5 @@ maintainer      : Audrey Tang <audreyt@audreyt.org>
 category        : Text, Regex
 stability       : experimental
 build-type      : Simple
-homepage        : 
+homepage        : https://github.com/audreyt/regex-genex
+synopsis        : Fr
