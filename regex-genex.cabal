@@ -10,3 +10,4 @@ stability       : experimental
 build-type      : Simple
 homepage        : https://github.com/audreyt/regex-genex
 synopsis        : From a regex, generate all possible strings it can match
+description     : From a regex, generate all possible stri
