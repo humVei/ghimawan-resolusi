@@ -9,4 +9,4 @@ category        : Text, Regex
 stability       : experimental
 build-type      : Simple
 homepage        : https://github.com/audreyt/regex-genex
-synopsis        : Fr
+synopsis        : From a regex, generate all possible strings it can match
