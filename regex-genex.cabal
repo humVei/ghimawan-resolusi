@@ -16,4 +16,6 @@ Tested-With:    GHC==7.10.1
 
 library
     hs-source-dirs:     . src
-    exposed-modules:    Regex.Genex Regex.Genex.Normal
+    exposed-modules:    Regex.Genex Regex.Genex.Normalize
+    other-modules:    Regex.Genex.Pure
+    extensions    
