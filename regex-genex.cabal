@@ -18,4 +18,6 @@ library
     hs-source-dirs:     . src
     exposed-modules:    Regex.Genex Regex.Genex.Normalize
     other-modules:    Regex.Genex.Pure
-    extensions      : ImplicitParams, NamedFieldPuns, ParallelListComp, PatternGuards,
+    extensions      : ImplicitParams, NamedFieldPuns, ParallelListComp, PatternGuards, RecordWildCards
+    build-depends:
+        base >=
