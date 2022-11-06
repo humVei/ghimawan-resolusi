@@ -12,3 +12,7 @@ homepage        : https://github.com/audreyt/regex-genex
 synopsis        : From a regex, generate all possible strings it can match
 description     : From a regex, generate all possible strings it can match
 author          : Audrey Tang <audreyt@audreyt.org>
+Tested-With:    GHC==7.10.1
+
+library
+    hs-source-dirs:    
