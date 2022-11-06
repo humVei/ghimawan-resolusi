@@ -15,4 +15,5 @@ author          : Audrey Tang <audreyt@audreyt.org>
 Tested-With:    GHC==7.10.1
 
 library
-    hs-source-dirs:    
+    hs-source-dirs:     . src
+    exposed-modules:    Regex.Genex Regex.Genex.Normal
