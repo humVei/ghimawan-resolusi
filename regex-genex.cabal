@@ -23,4 +23,6 @@ library
         base >= 3 && < 5, mtl, containers, sbv >= 5 && < 6, regex-tdfa, stream-monad, text, logict
 
 executable genex
-    main-i
+    main-is:            Main.hs
+    hs-source-dirs:     . src
+    extension
