@@ -25,4 +25,6 @@ library
 executable genex
     main-is:            Main.hs
     hs-source-dirs:     . src
-    extensions      : ImplicitParams, NamedFieldPuns, ParallelListComp, Pa
+    extensions      : ImplicitParams, NamedFieldPuns, ParallelListComp, PatternGuards, RecordWildCards
+    build-depends:
+        base >= 3 && < 5,
