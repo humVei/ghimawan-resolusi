@@ -31,4 +31,4 @@ executable genex
 
 source-repository head
   type:     git
-  location: http://github.com/audreyt/regex
+  location: http://github.com/audreyt/regex-genex
