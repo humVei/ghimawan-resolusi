@@ -97,3 +97,13 @@ simplify pat = case pat of
     PConcat ps -> case concatMap (fromConcat . simplify) ps of
         [] -> PEmpty
         ps' -> PConcat ps'
+        where
+        fromConcat (PConcat ps') = ps'
+        fromConcat PEmpty        = []
+        fromConcat p             = [p]
+    PBound low (Just high) p
+        | high == low -> simplify $ PConcat (replicate low (simplify p))
+    PBound low high p -> PBound low high (simplify p)
+    PPlus p -> PPlus (simplify p)
+    PStar x p -> PStar x (simplify p)
+    _ -> pat
