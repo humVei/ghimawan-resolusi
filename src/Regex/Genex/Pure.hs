@@ -6,4 +6,5 @@ import qualified Data.Set as Set
 import Data.List (intersect, (\\))
 import Control.Monad
 import Control.Monad.Stream
-import qualified Control.Monad.
+import qualified Control.Monad.Stream as Stream
+import Regex.Genex.Normalize (normalize
