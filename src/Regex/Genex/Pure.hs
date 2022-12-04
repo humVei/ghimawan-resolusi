@@ -11,4 +11,8 @@ import Regex.Genex.Normalize (normalize)
 import Debug.Trace
 import Text.Regex.TDFA.Pattern
 import Text.Regex.TDFA.ReadRegex (parseRegex)
-import Control.Monad.
+import Control.Monad.State
+import Control.Applicative
+
+parse :: String -> Pattern
+par
