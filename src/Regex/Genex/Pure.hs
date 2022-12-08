@@ -16,4 +16,7 @@ import Control.Applicative
 
 parse :: String -> Pattern
 parse r = case parseRegex r of
-    Right (pattern, _
+    Right (pattern, _) -> pattern
+    Left x -> error $ show x
+
+genexPure :: [S
