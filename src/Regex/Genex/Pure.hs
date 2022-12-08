@@ -15,4 +15,5 @@ import Control.Monad.State
 import Control.Applicative
 
 parse :: String -> Pattern
-par
+parse r = case parseRegex r of
+    Right (pattern, _
