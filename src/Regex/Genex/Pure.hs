@@ -19,4 +19,5 @@ parse r = case parseRegex r of
     Right (pattern, _) -> pattern
     Left x -> error $ show x
 
-genexPure :: [S
+genexPure :: [String] -> [String]
+genexPure = map T.unpack . foldl1 intersect . m
