@@ -20,4 +20,6 @@ parse r = case parseRegex r of
     Left x -> error $ show x
 
 genexPure :: [String] -> [String]
-genexPure = map T.unpack . foldl1 intersect . m
+genexPure = map T.unpack . foldl1 intersect . map (Stream.runStream . run . normalize IntSet.empty . parse)
+
+maxRepeat
