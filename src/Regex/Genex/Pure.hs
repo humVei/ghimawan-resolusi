@@ -26,3 +26,6 @@ maxRepeat :: Int
 maxRepeat = 10
 
 each = foldl1 (<|>) . map return
+
+run :: Pattern -> Stream T.Text
+run p = case
