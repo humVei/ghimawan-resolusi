@@ -30,4 +30,5 @@ each = foldl1 (<|>) . map return
 run :: Pattern -> Stream T.Text
 run p = case p of
     PEmpty -> pure T.empty
-    PChar{..} -> isCh
+    PChar{..} -> isChar getPatternChar
+    PAny {getPatternSet = PatternSet (Just c
