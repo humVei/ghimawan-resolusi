@@ -31,4 +31,5 @@ run :: Pattern -> Stream T.Text
 run p = case p of
     PEmpty -> pure T.empty
     PChar{..} -> isChar getPatternChar
-    PAny {getPatternSet = PatternSet (Just c
+    PAny {getPatternSet = PatternSet (Just cset) _ _ _} -> each $ map T.singleton $ Set.toList cset
+    PAnyNot {ge
