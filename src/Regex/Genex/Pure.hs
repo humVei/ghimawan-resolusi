@@ -32,4 +32,4 @@ run p = case p of
     PEmpty -> pure T.empty
     PChar{..} -> isChar getPatternChar
     PAny {getPatternSet = PatternSet (Just cset) _ _ _} -> each $ map T.singleton $ Set.toList cset
-    PAnyNot {ge
+    PAnyNot {getPatternSet = PatternSet (Just cset) _ _ _} -> chars $ notChars $ concatMap 
