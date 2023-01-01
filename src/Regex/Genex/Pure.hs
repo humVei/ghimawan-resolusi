@@ -33,4 +33,6 @@ run p = case p of
     PChar{..} -> isChar getPatternChar
     PAny {getPatternSet = PatternSet (Just cset) _ _ _} -> each $ map T.singleton $ Set.toList cset
     PAnyNot {getPatternSet = PatternSet (Just cset) _ _ _} -> chars $ notChars $ concatMap expandEscape $ Set.toList cset
-    PQuest p -> pure T.empty
+    PQuest p -> pure T.empty <|> run p
+    PPlus p -> run $ PBound 1 Nothing p
+    PStar _ p -> run $ PB
