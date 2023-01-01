@@ -35,4 +35,6 @@ run p = case p of
     PAnyNot {getPatternSet = PatternSet (Just cset) _ _ _} -> chars $ notChars $ concatMap expandEscape $ Set.toList cset
     PQuest p -> pure T.empty <|> run p
     PPlus p -> run $ PBound 1 Nothing p
-    PStar _ p -> run $ PB
+    PStar _ p -> run $ PBound 0 Nothing p
+    PBound low high p -> do
+        n <- each [low..maybe
