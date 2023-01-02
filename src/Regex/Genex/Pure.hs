@@ -37,4 +37,5 @@ run p = case p of
     PPlus p -> run $ PBound 1 Nothing p
     PStar _ p -> run $ PBound 0 Nothing p
     PBound low high p -> do
-        n <- each [low..maybe
+        n <- each [low..maybe (low+maxRepeat) id high]
+        fmap T.conc
