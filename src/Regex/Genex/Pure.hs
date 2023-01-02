@@ -38,4 +38,5 @@ run p = case p of
     PStar _ p -> run $ PBound 0 Nothing p
     PBound low high p -> do
         n <- each [low..maybe (low+maxRepeat) id high]
-        fmap T.conc
+        fmap T.concat . sequence $ replicate n (run p) 
+    PConcat ps 
