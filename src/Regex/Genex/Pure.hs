@@ -41,4 +41,5 @@ run p = case p of
         fmap T.concat . sequence $ replicate n (run p) 
     PConcat ps -> fmap T.concat . suspended . sequence $ map run ps
     POr xs -> foldl1 mplus $ map run xs
-    PDot{} -> chars $ notChars
+    PDot{} -> chars $ notChars []
+    PEscape {..} -> chars $ expandEscape getPatternChar
