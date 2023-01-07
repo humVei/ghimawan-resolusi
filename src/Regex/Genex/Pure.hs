@@ -39,4 +39,5 @@ run p = case p of
     PBound low high p -> do
         n <- each [low..maybe (low+maxRepeat) id high]
         fmap T.concat . sequence $ replicate n (run p) 
-    PConcat ps 
+    PConcat ps -> fmap T.concat . suspended . sequence $ map run ps
+    
