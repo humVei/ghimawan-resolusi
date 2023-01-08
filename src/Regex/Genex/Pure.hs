@@ -43,3 +43,6 @@ run p = case p of
     POr xs -> foldl1 mplus $ map run xs
     PDot{} -> chars $ notChars []
     PEscape {..} -> chars $ expandEscape getPatternChar
+    _      -> error $ show p
+    where
+    isChar = r
