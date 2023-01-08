@@ -47,4 +47,7 @@ run p = case p of
     where
     isChar = return . T.singleton
     chars = each . map T.singleton
-    notChars = ([' '..
+    notChars = ([' '..'~'] \\)
+    expandEscape ch = case ch of
+        'n' -> "\n"
+        't' ->
