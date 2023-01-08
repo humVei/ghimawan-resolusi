@@ -50,4 +50,7 @@ run p = case p of
     notChars = ([' '..'~'] \\)
     expandEscape ch = case ch of
         'n' -> "\n"
-        't' ->
+        't' -> "\t"
+        'r' -> "\r"
+        'f' -> "\f"
+        'a' -> "\a"
