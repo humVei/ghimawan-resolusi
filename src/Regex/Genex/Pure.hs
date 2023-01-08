@@ -45,4 +45,6 @@ run p = case p of
     PEscape {..} -> chars $ expandEscape getPatternChar
     _      -> error $ show p
     where
-    isChar = r
+    isChar = return . T.singleton
+    chars = each . map T.singleton
+    notChars = ([' '..
