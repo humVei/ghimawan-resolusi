@@ -115,3 +115,67 @@ possibleLengths pat = case pat of
         | Data.Char.isDigit ch -> do
             let num = charToDigit ch
             modify $ \(g, b) -> (g, IntSet.insert num b)
+            gets $ (IntMap.findWithDefault (IntMap.findWithDefault (error $ "No such capture: " ++ [ch]) num ?grp) num) . fst
+        | Data.Char.isAlpha ch -> error $ "Unsupported escape: " ++ [ch]
+        | otherwise -> one
+    PBound low (Just high) p -> manyTimes p low high
+    PBound low _ p -> manyTimes p low (low + ?maxRepeat)
+    PPlus p -> manyTimes p 1 (?maxRepeat+1)
+    PStar _ p -> manyTimes p 0 ?maxRepeat
+    PEmpty -> zero
+    _ -> error $ show pat
+    where
+    one = return $ IntSet.singleton 1
+    zero = return $ IntSet.singleton 0
+    zeroSet = IntSet.singleton 0
+    sumSets s1 s2 = IntSet.unions [ IntSet.map (+elm) s2 | elm <- IntSet.elems s1 ]
+    manyTimes p low high = maybeGroup p $ \lenP -> IntSet.unions
+        [ foldl sumSets (IntSet.singleton 0) (replicate i lenP)
+        | i <- [low..high]
+        ]
+    maybeGroup p@(PGroup (Just idx) _) f = do
+        lenP <- possibleLengths p
+        let lenP' = f lenP
+        modify $ \(g, b) -> (IntMap.insert idx lenP' g, b)
+        return lenP'
+    maybeGroup p f = fmap f (possibleLengths p)
+
+charToDigit :: Char -> Int
+charToDigit ch = Data.Char.ord ch - Data.Char.ord '0'
+
+exactMatch :: (?maxRepeat :: Int, ?pats :: [(Pattern, GroupLens)]) => Len -> Symbolic SBool
+exactMatch len = do
+    str <- mkExistVars $ fromEnum len
+    initialFlips <- mkExistVars 1
+    captureAt <- newArray_ (Just minBound)
+    captureLen <- newArray_ (Just minBound)
+    let ?str = str
+    let initialStatus = Status
+            { ok = true
+            , pos = strLen
+            , flips = initialFlips
+            , captureAt = captureAt
+            , captureLen = captureLen
+            }
+        strLen = literal len
+        runPat s (pat, groupLens) = let ?pat = pat in let ?grp = groupLens in
+            ite (ok s &&& pos s .== strLen)
+                (match s{ pos = 0, captureAt, captureLen })
+                s{ ok = false, pos = maxBound, flips = [maxBound] }
+    let Status{ ok, pos, flips } = foldl runPat initialStatus ?pats
+    return (bAll (.== 0) flips &&& pos .== strLen &&& ok)
+
+data Status = Status
+    { ok :: SBool
+    , pos :: Offset
+    , flips :: Flips
+    , captureAt :: Captures
+    , captureLen :: Captures
+    }
+
+instance Mergeable Status where
+  symbolicMerge f t s1 s2 = Status
+    { ok = symbolicMerge f t (ok s1) (ok s2)
+    , pos = symbolicMerge f t (pos s1) (pos s2)
+    , flips = symbolicMerge f t (flips s1) (flips s2)
+    , captureAt = symbolicMerge f t (captureAt s1) (captureAt s2)
