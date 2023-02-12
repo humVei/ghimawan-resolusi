@@ -64,3 +64,54 @@ type Str = [SChar]
 type Offset = SBV Len
 type Flips = [SWord64]
 type Captures = SFunArray Word8 Len
+type Hits = Word16
+
+maxHits :: Hits
+maxHits = maxBound -- 65535
+
+-- controlled by an implicit parameter, but this is the default
+-- when instantiated from functions that do not expose the implicit
+-- parameter to the user
+maxRepeatDefault :: Int
+maxRepeatDefault = 3 -- 7 and 15 are also good
+
+maxLength :: Len
+maxLength = maxBound -- 65535
+
+-- lengths p = let ?grp = mempty in IntSet.toList . fst $ runState (possibleLengths $ parse p) mempty
+
+minLen :: (?maxRepeat :: Int, ?grp :: GroupLens) => Pattern -> Int
+minLen p = case p of
+    PEscape {getPatternChar = ch}
+        | Data.Char.isDigit ch -> let num = charToDigit ch in
+            IntSet.findMin (IntMap.findWithDefault (IntSet.singleton 0) num ?grp)
+    _ -> IntSet.findMin . fst $ runState (possibleLengths p) mempty
+
+parse :: String -> Pattern
+parse r = case parseRegex r of
+    Right (pattern, _) -> pattern
+    Left x -> error $ show x
+
+type GroupLens = IntMap IntSet
+type BackReferences = IntSet
+
+possibleLengths :: (?maxRepeat :: Int, ?grp :: GroupLens) => Pattern -> State (GroupLens, BackReferences) IntSet
+possibleLengths pat = case pat of
+    _ | isOne pat -> one
+    PGroup (Just idx) p -> do
+        lenP <- possibleLengths p
+        modify $ \(g, b) -> (IntMap.insert idx lenP g, b)
+        return lenP
+    PGroup _ p -> possibleLengths p
+    PCarat{} -> zero
+    PDollar{} -> zero
+    PQuest p -> maybeGroup p (`mappend` zeroSet)
+    POr ps -> fmap mconcat $ mapM possibleLengths ps
+    PConcat [] -> zero
+    PConcat ps -> fmap (foldl1 sumSets) (mapM possibleLengths ps)
+    PEscape {getPatternChar = ch}
+        | ch `elem` "ntrfaedwsWSD" -> one
+        | ch `elem` "b" -> zero
+        | Data.Char.isDigit ch -> do
+            let num = charToDigit ch
+            modify $ \(g, b) -> (g, IntSet.insert num b)
