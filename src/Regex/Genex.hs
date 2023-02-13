@@ -256,3 +256,73 @@ matchOne cur = case ?pat of
              ||| (cur .>= ord 'a' &&& cur .<= ord 'z')
              ||| (cur .== ord '_')
     isWhiteSpace = cur .== 32 ||| (9 .<= cur &&& 13 .>= cur &&& 11 ./= cur)
+
+
+match :: (?maxRepeat :: Int, ?str :: Str, ?pat :: Pattern, ?grp :: GroupLens) => Status -> Status
+match s@Status{ pos, flips, captureAt, captureLen }
+  | isOne ?pat = ite (pos .>= strLen) __FAIL__ one
+  | otherwise = ite (pos + (toEnum $ minLen ?pat) .> strLen) __FAIL__ $ case ?pat of
+    PGroup (Just idx) p -> let s'@Status{ pos = pos', ok = ok' } = next p in 
+        ite ok' (s'
+            { captureAt = writeCapture captureAt idx pos
+            , captureLen = writeCapture captureLen idx (pos' - pos)
+            }) __FAIL__
+    PGroup _ p -> next p
+    PCarat{} -> ite (isBegin ||| (charAt (pos-1) .== ord '\n')) s __FAIL__
+    PDollar{} -> ite (isEnd ||| (charAt (pos+1) .== ord '\n')) s __FAIL__
+    PQuest p -> choice flips [\b -> let ?pat = p in match s{ flips = b }, \b -> s{ flips = b }]
+    POr [p] -> next p
+    POr ps -> choice flips $ map (\p -> \b -> let ?pat = p in match s{ flips = b }) ps
+    PConcat [] -> s
+    PConcat [p] -> next p
+    PConcat ps
+        | all isOne ps -> ite (
+            (bAnd [ let ?pat = p in matchOne (charAt (pos+i))
+                  | p <- ps
+                  | i <- [0..]
+                  ])
+        ) s{ pos = pos + toEnum (length ps) } __FAIL__
+        | (ones@(_:_:_), rest) <- span isOne ps -> step [PConcat ones, PConcat rest] s
+        | (nones@(_:_), rest@(_:_:_)) <- span (not . isOne) ps -> step (nones ++ [PConcat rest]) s
+        | otherwise -> step ps s
+        where
+        step [] s' = s'
+        step (p':ps') s' = 
+            let s''@Status{ ok } = (let ?pat = p' in match s')
+                res = step ps' s''
+             in ite ok res __FAIL__
+    PEscape {getPatternChar = ch} -> case ch of
+        'b' -> ite isWordBoundary s __FAIL__
+        _ | Data.Char.isDigit ch -> 
+            let from = readCapture captureAt num
+                Just defaultLen = IntMap.lookup num ?grp 
+                possibleLens = IntSet.toList defaultLen
+                len = case possibleLens of
+                    []  -> 0
+                    [l] -> toEnum l
+                    _   -> readCapture captureLen num
+                num = charToDigit ch
+             in ite (matchCapture (from :: Offset) len 0) s{ pos = pos+len } __FAIL__
+          | Data.Char.isAlpha ch -> error $ "Unsupported escape: " ++ [ch]
+          | otherwise  -> cond (ord ch .== cur)
+    PBound low (Just high) p -> let s'@Status{ ok = ok' } = (let ?pat = PConcat (replicate low p) in match s) in
+        if low == high then s' else ite ok' (let ?pat = p in (manyTimes s' $ high - low)) s'
+    PBound low _ p -> let ?pat = (PBound low (Just $ low + ?maxRepeat) p) in match s
+    PPlus p ->
+        let s'@Status{ok} = next p
+            res = let ?pat = PStar True p in match s'
+         in ite ok res s'
+    PStar _ p -> next $ PBound 0 Nothing p
+    PEmpty -> s
+    _ -> error $ show ?pat
+    where
+    one = cond $ matchOne cur
+    next p = let ?pat = p in match s
+    strLen = toEnum (length ?str)
+    manyTimes :: (?pat :: Pattern) => Status -> Int -> Status
+    manyTimes s'@Status{ flips = flips' } n
+        | n <= 0 = s'
+        | otherwise = choice flips' [\b -> s'{ flips = b }, nextTime]
+            where
+            nextTime b = let s''@Status{ ok = ok'', pos = pos'' } = match s'{ flips = b } in
+                ite (pos'' .<= strLen &&& ok'') (manyTimes s'' (n-1)) s''
