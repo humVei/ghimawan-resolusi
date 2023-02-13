@@ -326,3 +326,48 @@ match s@Status{ pos, flips, captureAt, captureLen }
             where
             nextTime b = let s''@Status{ ok = ok'', pos = pos'' } = match s'{ flips = b } in
                 ite (pos'' .<= strLen &&& ok'') (manyTimes s'' (n-1)) s''
+
+    cur = charAt pos
+    charAt = select ?str 0
+    cond b = ite b s{ pos = pos+1 } __FAIL__
+    ord = toEnum . Data.Char.ord
+    matchCapture :: Offset -> Offset -> Int -> SBool
+    matchCapture from len n
+        | n >= (length ?str) = true
+        | otherwise = (len .<= off) ||| (charAt (pos+off) .== charAt (from+off) &&& matchCapture from len (n+1))
+        where
+        off = toEnum n
+    __FAIL__ = s{ ok = false, pos = maxBound, flips = [maxBound] }
+    isEnd = (pos .== toEnum (length ?str))
+    isBegin = (pos .== 0)
+    isWordCharAt at = let char = charAt at in
+        (char .>= ord 'A' &&& char .<= ord 'Z')
+            |||
+        (char .>= ord 'a' &&& char .<= ord 'z')
+            |||
+        (char .== ord '_')
+    isWordBoundary = case length ?str of
+        0 -> false
+        _ -> (isEnd &&& isWordCharAt (pos-1)) |||
+             (isBegin &&& isWordCharAt pos) |||
+             (isWordCharAt (pos-1) <+> isWordCharAt pos)
+
+
+displayString :: [SatResult] -> Hits -> (Hits -> IO ()) -> IO ()
+displayString [] a next = next a
+displayString (r:rs) a next = do
+    let Right (_, (chars, rank)) = getModel r
+    putStr $ show (length (chars :: [Word8])) ++ "."
+    let n = show (rank :: Word64)
+    putStr (replicate (8 - length n) '0')
+    putStr n
+    putStr "\t\t"
+    print $ map chr chars
+    if (a+1 >= maxHits) then return () else
+        displayString rs (a+1) next
+    where
+    chr = Data.Char.chr . fromEnum
+
+genexWith :: (?maxRepeat :: Int, Monoid a) => ([SatResult] -> Hits -> (Hits -> IO a) -> IO a) -> [[Char]] -> IO a
+genexWith f regexes = do
+    let ?grp = mempty
