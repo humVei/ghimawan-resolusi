@@ -179,3 +179,80 @@ instance Mergeable Status where
     , pos = symbolicMerge f t (pos s1) (pos s2)
     , flips = symbolicMerge f t (flips s1) (flips s2)
     , captureAt = symbolicMerge f t (captureAt s1) (captureAt s2)
+    , captureLen = symbolicMerge f t (captureLen s1) (captureLen s2)
+    }
+
+choice :: (?str :: Str, ?pat :: Pattern) => Flips -> [Flips -> Status] -> Status
+choice _ [] = error "X"
+choice flips [a] = a flips
+choice flips [a, b] = ite (lsb flip) (b flips') (a flips')
+    where
+    flip = head flips
+    flips' = [flip `shiftR` 1]
+choice flips xs = select (map ($ flips') xs) (head xs [thisFlip]){ ok = false } thisFlip
+    where
+    bits = log2 $ length xs
+    flips' = [head flips `shiftR` bits]
+    thisFlip = head flips `shiftL` (64 - bits) `shiftR` (64 - bits)
+
+log2 :: Int -> Int
+log2 1 = 0
+log2 n = 1 + log2 ((n + 1) `div` 2)
+
+writeCapture :: Captures -> Int -> Offset -> Captures
+writeCapture cap idx val = writeArray cap (toEnum idx) val
+
+readCapture :: Captures -> Int -> Offset
+readCapture a = readArray a . toEnum
+    
+isOne :: Pattern -> Bool
+isOne PChar{} = True
+isOne PDot{} = True
+isOne PAny {} = True
+isOne PAnyNot {} = True
+isOne (PGroup Nothing p) = isOne p
+isOne PEscape {getPatternChar = ch}
+    | ch `elem` "ntrfaedwsWSD" = True
+    | ch `elem` "b" = False
+    | Data.Char.isDigit ch = False
+    | Data.Char.isAlpha ch = error $ "Unsupported escape: " ++ [ch]
+    | otherwise = True
+isOne _ = False
+
+matchOne :: (?pat :: Pattern) => SChar -> SBool
+matchOne cur = case ?pat of
+    PChar {getPatternChar = ch} -> isChar ch
+    PDot{} -> isDot
+    PGroup Nothing p -> let ?pat = p in matchOne cur
+    PAny {getPatternSet = pset} -> case pset of
+        PatternSet (Just cset) _ _ _ -> oneOf $ toList cset
+        _ -> error "TODO"
+    PAnyNot {getPatternSet = pset} -> case pset of
+        PatternSet (Just cset) _ _ _ -> noneOf $ toList cset
+        _ -> error "TODO"
+    PEscape {getPatternChar = ch} -> case ch of
+        'n' -> isChar '\n'
+        't' -> isChar '\t'
+        'r' -> isChar '\r'
+        'f' -> isChar '\f'
+        'a' -> isChar '\a'
+        'e' -> isChar '\ESC'
+        'd' -> isDigit
+        'w' -> isWordChar
+        's' -> isWhiteSpace
+        'W' -> (isDot &&& bnot isWordChar)
+        'S' -> (isDot &&& bnot isWhiteSpace)
+        'D' -> (isDot &&& bnot isDigit)
+        _   -> isChar ch
+    _ -> false
+    where
+    ord = toEnum . Data.Char.ord
+    isChar ch = cur .== ord ch
+    isDot = (cur .>= ord ' ' &&& cur .<= ord '~')
+    oneOf cs = bOr [ ord ch .== cur | ch <- cs ]
+    noneOf cs = bAnd ((cur .>= ord ' ') : (cur .<= ord '~') : [ ord ch ./= cur | ch <- cs ])
+    isDigit = (ord '0' .<= cur &&& ord '9' .>= cur)
+    isWordChar = (cur .>= ord 'A' &&& cur .<= ord 'Z')
+             ||| (cur .>= ord 'a' &&& cur .<= ord 'z')
+             ||| (cur .== ord '_')
+    isWhiteSpace = cur .== 32 ||| (9 .<= cur &&& 13 .>= cur &&& 11 ./= cur)
