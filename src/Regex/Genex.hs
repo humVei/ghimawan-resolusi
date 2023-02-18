@@ -371,3 +371,63 @@ displayString (r:rs) a next = do
 genexWith :: (?maxRepeat :: Int, Monoid a) => ([SatResult] -> Hits -> (Hits -> IO a) -> IO a) -> [[Char]] -> IO a
 genexWith f regexes = do
     let ?grp = mempty
+    let p'lens = [ ((p', groupLens), lens)
+                 | p <- [ if r == "" then PEmpty else parse r | r <- regexes ]
+                 , let (lens, (groupLens, backRefs)) = runState (possibleLengths p) mempty
+                 , let p' = normalize backRefs p
+                 ]
+    let ?pats = map fst p'lens
+    let lens = IntSet.toAscList $ foldl1 IntSet.intersection (map snd p'lens)
+    tryWith f (filter (<= maxLength) $ map toEnum lens) 0
+
+tryWith :: (?maxRepeat :: Int, ?pats :: [(Pattern, GroupLens)]) => 
+    Monoid a => ResultHandler a -> [Len] -> Hits -> IO a
+tryWith _ [] _ = return mempty
+tryWith f (len:lens) acc = if len > maxLength then return mempty else do
+    AllSatResult (_, allRes) <- allSat $ exactMatch len
+    f (map SatResult allRes) acc $ tryWith f lens
+
+type ResultHandler a = [SatResult] -> Hits -> (Hits -> IO a) -> IO a
+
+getStringWith :: (Model -> a) -> [SatResult] -> Hits -> (Hits -> IO [a]) -> IO [a]
+getStringWith _ [] a next = next a
+getStringWith f (r:rs) a next = do
+    let Right (_, (chars, rank)) = getModel r
+    rest <- if (a+1 >= maxHits) then return [] else
+        unsafeInterleaveIO $ getStringWith f rs (a+1) next
+    return (f (Model chars rank):rest)
+
+getString :: [SatResult] -> Hits -> (Hits -> IO [String]) -> IO [String]
+getString = getStringWith $ \Model{ modelChars } -> map chr modelChars
+    where
+    chr = Data.Char.chr . fromEnum
+
+-- Given a regex and a symbolic string, returns true if regex matches the string
+regexMatch :: (?maxRepeat :: Int) => [[Char]] -> Str -> Symbolic SBool
+regexMatch regexes str = do
+    let ?grp = mempty
+    let p'lens = [ ((p', groupLens), lens)
+                 | p <- [ if r == "" then PEmpty else parse r | r <- regexes ]
+                 , let (lens, (groupLens, backRefs)) = runState (possibleLengths p) mempty
+                 , let p' = normalize backRefs p
+                 ]
+    let ?pats = map fst p'lens
+    let lens = IntSet.toAscList $ foldl1 IntSet.intersection (map snd p'lens)
+    initialFlips <- mkExistVars 1
+    captureAt <- newArray_ (Just minBound)
+    captureLen <- newArray_ (Just minBound)
+    let ?str = str
+    let strLen = literal (fromIntegral (length str))
+    let initialStatus = Status
+            { ok = true
+            , pos = strLen
+            , flips = initialFlips
+            , captureAt = captureAt
+            , captureLen = captureLen
+            }
+        runPat s (pat, groupLens) = let ?pat = pat in let ?grp = groupLens in
+            ite (ok s &&& pos s .== strLen)
+                (match s{ pos = 0, captureAt, captureLen })
+                s{ ok = false, pos = maxBound, flips = [maxBound] }
+    let Status{ ok, pos, flips } = foldl runPat initialStatus ?pats
+    return (bAll (.== 0) flips &&& pos .== strLen &&& ok)
